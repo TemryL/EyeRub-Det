@@ -3,10 +3,10 @@ import torch
 import pandas as pd
 import pytorch_lightning as pl
 
-from glob import glob
-from multiprocessing import cpu_count
-from torch.utils.data import Dataset, DataLoader
 
+from glob import glob
+from torch.utils.data import Dataset, DataLoader
+from ..configs import NUM_WORKERS
 
 MEANS = [0.3622545097138867,
     0.16703852412033413,
@@ -97,7 +97,7 @@ class SupervisedDataModule(pl.LightningDataModule):
             self.train_dataset,
             batch_size = self.batch_size,
             shuffle=True,
-            num_workers = cpu_count()
+            num_workers = NUM_WORKERS
         )
     
     def val_dataloader(self):
@@ -105,7 +105,7 @@ class SupervisedDataModule(pl.LightningDataModule):
             self.test_dataset,
             batch_size = self.batch_size,
             shuffle = False,
-            num_workers = cpu_count()
+            num_workers = NUM_WORKERS
         )
 
     def test_dataloader(self):
@@ -113,5 +113,5 @@ class SupervisedDataModule(pl.LightningDataModule):
             self.test_dataset,
             batch_size = self.batch_size,
             shuffle = False,
-            num_workers = cpu_count()
+            num_workers = NUM_WORKERS
         )

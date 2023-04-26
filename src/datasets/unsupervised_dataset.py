@@ -4,8 +4,8 @@ import numpy as np
 import pytorch_lightning as pl
 
 from ..utils.masking import noise_mask
-from multiprocessing import cpu_count
 from torch.utils.data import Dataset, DataLoader
+from ..configs import NUM_WORKERS
 
 
 class UnsupervisedDataset(Dataset):
@@ -57,7 +57,7 @@ class UnsupervisedDataModule(pl.LightningDataModule):
             self.train_dataset,
             batch_size = self.batch_size,
             shuffle = True,
-            num_workers = cpu_count()
+            num_workers = NUM_WORKERS
         )
     
     def val_dataloader(self):
@@ -65,7 +65,7 @@ class UnsupervisedDataModule(pl.LightningDataModule):
             self.test_dataset,
             batch_size = self.batch_size,
             shuffle = False,
-            num_workers = cpu_count()
+            num_workers = NUM_WORKERS
         )
 
     def test_dataloader(self):
@@ -73,5 +73,5 @@ class UnsupervisedDataModule(pl.LightningDataModule):
             self.test_dataset,
             batch_size = self.batch_size,
             shuffle = False,
-            num_workers = cpu_count()
+            num_workers = NUM_WORKERS
         )
