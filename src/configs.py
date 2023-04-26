@@ -28,3 +28,4 @@ OUT_DIR = "out/"
 # Compute related
 ACCELERATOR = "cpu"
 NUM_WORKERS = 8
+PIN_MEMORY=True
