@@ -23,7 +23,7 @@ PRETRAINED_MODEL = None
 
 # Training hyperparameters
 BATCH_SIZE = 8
-NUM_EPOCHS = 2
+NUM_EPOCHS = 1
 
 ENCODER_CFGS = dict(
     learning_rate=1e-3,

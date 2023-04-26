@@ -61,7 +61,8 @@ def main(exp_name):
         devices=1,
         logger=logger, 
         callbacks=[f1_ckpt_callback, val_loss_ckpt_callback],
-        accelerator=config.ACCELERATOR
+        accelerator=config.ACCELERATOR,
+        enable_progress_bar=False
     )
 
     # Fit model
