@@ -29,6 +29,8 @@ class TransformerEncoder(UnsupervisedModel):
         self.act = _get_activation_fn(activation)
         self.dropout1 = nn.Dropout(dropout)
         self.feat_dim = feat_dim
+        
+        self.save_hyperparameters()
 
     def forward(self, X):
         output = self.encode(X)

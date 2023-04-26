@@ -45,7 +45,3 @@ class UnsupervisedModel(pl.LightningModule):
         avg_loss = torch.tensor([x['loss'] for x in outputs]).mean()
         self.logger.experiment.add_scalar('val_loss', avg_loss, self.current_epoch)
         self.val_epoch_outputs = []
-    
-    def configure_optimizers(self):
-        optimizer = torch.optim.RAdam(self.parameters(), lr=self.learning_rate, weight_decay=1e-6)
-        return optimizer

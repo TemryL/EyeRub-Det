@@ -16,6 +16,8 @@ class SupervisedModel(pl.LightningModule):
         self.accuracy = Accuracy(task="multiclass", num_classes=n_classes)
         self.f1 = F1Score(task="multiclass", num_classes=n_classes, average='macro')
         self.confmat = ConfusionMatrix(task="multiclass", num_classes=n_classes)
+        self.best_f1 = 0
+        self.best_val_loss = float('inf')
     
     def training_step(self, batch, batch_idx):
         y_hat, y_pred, y_true, loss = self._shared_step(batch, batch_idx)
@@ -67,8 +69,14 @@ class SupervisedModel(pl.LightningModule):
         self.logger.experiment.add_scalar('val_loss', avg_loss, self.current_epoch)
         self.logger.experiment.add_scalar('val_acc', acc, self.current_epoch)
         self.logger.experiment.add_scalar('f1', f1, self.current_epoch)
-        self.logger.experiment.add_figure("Confusion matrix", fig_, self.current_epoch)
+        self.logger.experiment.add_figure("Confusion matrix val", fig_, self.current_epoch)
         self.val_epoch_outputs = []
+        
+        if avg_loss < self.best_val_loss:
+            self.best_val_loss = avg_loss
+        if f1 > self.best_f1:
+            self.best_f1 = f1
+            self.best_cm = fig_
     
     def _plot_cm(self, y_pred, y_true):
         cm = self.confmat(y_pred, y_true)
@@ -77,8 +85,6 @@ class SupervisedModel(pl.LightningModule):
         fig_ = sns.heatmap(cm.to('cpu').numpy(), annot=True, cmap='Blues', ax=ax).get_figure()
         return fig_
     
-    def predict_step(self, batch, batch_idx):
-        x, y = batch
-        y_hat = self.forward(x)
-        y_pred = torch.argmax(y_hat, dim=1)
-        return y_pred
+    def on_train_end(self):
+        # self.save_hyperparameters(ignore=["encoder", "datamodule"])
+        self.logger.log_hyperparams(self.hparams, {"hp/f1": self.best_f1, "hp/val_loss": self.best_val_loss})

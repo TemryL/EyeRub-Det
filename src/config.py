@@ -19,7 +19,8 @@ FEATURES = ['accelerometerAccelerationX(G)',
             'motionGravityZ(G)'
 ]
 
-PRETRAINED_MODEL = 'pretrained/best-checkpoint-v4.ckpt'
+#PRETRAINED_MODEL = 'pretrained/best-checkpoint-v4.ckpt'
+PRETRAINED_MODEL = None
 
 # Training hyperparameters
 BATCH_SIZE = 8
@@ -29,7 +30,7 @@ ENCODER_CFGS = dict(
     learning_rate=1e-3,
     feat_dim=19, 
     max_len=150, 
-    d_model=128, 
+    d_model=256, 
     num_heads=4,
     num_layers=2, 
     dim_feedforward=4*128, 
@@ -45,8 +46,9 @@ MODEL_CFGS = dict(
     warmup=100
 )
 
-# Dataset
+# Directories
 DATA_DIR = "data/"
+OUT_DIR = "out/"
 
 # Compute related
 ACCELERATOR = "cpu"

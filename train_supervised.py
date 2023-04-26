@@ -10,7 +10,7 @@ from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.loggers import TensorBoardLogger
 
 
-def main(out_dir):
+def main(exp_name):
     # Set seed
     pl.seed_everything(42)
     
@@ -34,26 +34,33 @@ def main(out_dir):
     # Load transformer classifier
     model = TransformerClassifier(
         encoder=encoder,
-        n_features=len(config.FEATURES), 
         n_classes=len(CLASSES),
         datamodule=data_module,
         **config.MODEL_CFGS
     )
 
     # Set callbacks + logger + trainer
-    checkpoint_callback = ModelCheckpoint(
-        dirpath = out_dir + "/logs" + model.__class__.__name__, 
-        filename = "best-checkpoint",
+    f1_ckpt_callback = ModelCheckpoint(
+        dirpath = f'{config.OUT_DIR}/logs{model.__class__.__name__}/{exp_name}', 
+        filename = "best_f1",
         save_top_k = 1, verbose=True, 
-        monitor = "f1", mode="max")
+        monitor = "f1", mode="max"
+    )
+    
+    val_loss_ckpt_callback = ModelCheckpoint(
+        dirpath = f'{config.OUT_DIR}/logs{model.__class__.__name__}/{exp_name}', 
+        filename = "best_val_loss",
+        save_top_k = 1, verbose=True, 
+        monitor = "val_loss", mode="min"
+    )
 
-    logger = TensorBoardLogger(save_dir=out_dir, name='logs' + model.__class__.__name__)
-
+    logger = TensorBoardLogger(save_dir=config.OUT_DIR, name=f'logs{model.__class__.__name__}/{exp_name}')
+    
     trainer = pl.Trainer(
         max_epochs=config.NUM_EPOCHS, 
         devices=1,
         logger=logger, 
-        callbacks=[checkpoint_callback],
+        callbacks=[f1_ckpt_callback, val_loss_ckpt_callback],
         accelerator=config.ACCELERATOR
     )
 
@@ -66,12 +73,12 @@ if __name__ == '__main__':
         description="Train supervised model using either pre-trained model or from scratch."
     )
     parser.add_argument(
-        "out_dir",
-        metavar="out_dir",
+        "exp_name",
+        metavar="exp_name",
         type=str,
-        help="The path to write logs.",
+        help="The name of the experiments to be used as directories for logs.",
     )
     
     args = parser.parse_args()
     
-    main(args.out_dir)
+    main(args.exp_name)
