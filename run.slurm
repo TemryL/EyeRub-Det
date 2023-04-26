@@ -13,7 +13,7 @@ echo STARTING AT `date`
 
 module load gcc cuda cudnn mvapich2
 source ../venvs/hfi/bin/activate
-srun python train_supervised.py 'exp'
+srun python train_supervised.py
 deactivate
 
 echo FINISHED at `date`
