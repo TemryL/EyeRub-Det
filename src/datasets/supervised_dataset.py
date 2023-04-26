@@ -6,7 +6,6 @@ import pytorch_lightning as pl
 from glob import glob
 from multiprocessing import cpu_count
 from torch.utils.data import Dataset, DataLoader
-from torchsampler import ImbalancedDatasetSampler
 
 
 MEANS = [0.3622545097138867,
@@ -97,7 +96,7 @@ class SupervisedDataModule(pl.LightningDataModule):
         return DataLoader(
             self.train_dataset,
             batch_size = self.batch_size,
-            sampler = ImbalancedDatasetSampler(self.train_dataset),
+            shuffle=True,
             num_workers = cpu_count()
         )
     
