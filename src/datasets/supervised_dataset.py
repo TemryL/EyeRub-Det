@@ -6,7 +6,7 @@ import pytorch_lightning as pl
 
 from glob import glob
 from torch.utils.data import Dataset, DataLoader
-from ..configs import NUM_WORKERS
+from ..configs import NUM_WORKERS, PIN_MEMORY
 
 MEANS = [0.3622545097138867,
     0.16703852412033413,
@@ -97,7 +97,8 @@ class SupervisedDataModule(pl.LightningDataModule):
             self.train_dataset,
             batch_size = self.batch_size,
             shuffle=True,
-            num_workers = NUM_WORKERS
+            num_workers = NUM_WORKERS,
+            pin_memory=PIN_MEMORY
         )
     
     def val_dataloader(self):
@@ -105,7 +106,8 @@ class SupervisedDataModule(pl.LightningDataModule):
             self.test_dataset,
             batch_size = self.batch_size,
             shuffle = False,
-            num_workers = NUM_WORKERS
+            num_workers = NUM_WORKERS,
+            pin_memory=PIN_MEMORY
         )
 
     def test_dataloader(self):
@@ -113,5 +115,6 @@ class SupervisedDataModule(pl.LightningDataModule):
             self.test_dataset,
             batch_size = self.batch_size,
             shuffle = False,
-            num_workers = NUM_WORKERS
+            num_workers = NUM_WORKERS,
+            pin_memory=PIN_MEMORY
         )

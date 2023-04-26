@@ -60,7 +60,7 @@ def train(config, num_epochs):
         logger=logger, 
         callbacks=[f1_ckpt_callback, val_loss_ckpt_callback],
         accelerator=configs.ACCELERATOR,
-        enable_progress_bar=True
+        enable_progress_bar=False
     )
 
     # Fit model
