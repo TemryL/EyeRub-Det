@@ -96,10 +96,11 @@ if __name__ == '__main__':
         )
     )
 
-    #train(config=config, num_epochs=1)
+    train(config=config, num_epochs=1)
+    
     # Execute the hyperparameter search
-    tuner = tune.Tuner(
-        tune.with_parameters(train, num_epochs=1),
-        param_space=config
-    )
-    results = tuner.fit()
+    # tuner = tune.Tuner(
+    #     tune.with_parameters(train, num_epochs=1),
+    #     param_space=config
+    # )
+    # results = tuner.fit()
