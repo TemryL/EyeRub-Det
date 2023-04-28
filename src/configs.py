@@ -28,4 +28,4 @@ OUT_DIR = "out/"
 # Compute related
 ACCELERATOR = "gpu"
 NUM_WORKERS = 20
-PIN_MEMORY=True
+PIN_MEMORY = True
