@@ -61,9 +61,6 @@ def train(config, num_epochs=1):
 
     # Fit model
     trainer.fit(model, datamodule=data_module)
-    
-    # Return validation F1 score
-    return trainer.callback_metrics['f1']
 
 
 if __name__ == '__main__':
@@ -72,7 +69,7 @@ if __name__ == '__main__':
     
     for num_layers in [1, 2, 3, 4]:
         for d_model in [64, 128, 256]:
-            for num_heads in [6, 8, 12]:
+            for num_heads in [4, 8, 16]:
                     for dim_fc in [128, 256, 512]:
                         
                         lr = 5e-4
@@ -94,7 +91,7 @@ if __name__ == '__main__':
                             ),
                             classifier_cfgs = dict(
                                 learning_rate=lr,
-                                warmup=100,
+                                warmup=400,
                                 weight_decay=1e-6
                             )
                         )

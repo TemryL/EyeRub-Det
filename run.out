@@ -1,118 +1,17 @@
-STARTING AT Fri Apr 28 22:37:19 CEST 2023
+STARTING AT Fri Apr 28 23:29:38 CEST 2023
 [rank: 0] Global seed set to 42
-2023-04-28 22:37:39,040	INFO worker.py:1625 -- Started a local Ray instance.
-[2m[36m(train pid=21933)[0m GPU available: True (cuda), used: True
-[2m[36m(train pid=21933)[0m TPU available: False, using: 0 TPU cores
-[2m[36m(train pid=21933)[0m IPU available: False, using: 0 IPUs
-[2m[36m(train pid=21933)[0m HPU available: False, using: 0 HPUs
-[2m[36m(train pid=21933)[0m Missing logger folder: out/logsTransformerClassifier
-[2m[36m(train pid=21933)[0m LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
-2023-04-28 22:38:17,910	ERROR trial_runner.py:1450 -- Trial train_92b8b_00000: Error happened when processing _ExecutorEventType.TRAINING_RESULT.
-ray.exceptions.RayTaskError(ValueError): [36mray::ImplicitFunc.train()[39m (pid=21933, ip=10.91.27.63, repr=train)
-  File "/home/mery/venvs/hfi/lib/python3.7/site-packages/ray/tune/trainable/trainable.py", line 384, in train
-    raise skipped from exception_cause(skipped)
-  File "/home/mery/venvs/hfi/lib/python3.7/site-packages/ray/tune/trainable/function_trainable.py", line 339, in entrypoint
-    self._status_reporter.get_checkpoint(),
-  File "/home/mery/venvs/hfi/lib/python3.7/site-packages/ray/tune/trainable/function_trainable.py", line 653, in _trainable_func
-    output = fn()
-  File "/home/mery/venvs/hfi/lib/python3.7/site-packages/ray/tune/trainable/util.py", line 421, in _inner
-    return inner(config, checkpoint_dir=None)
-  File "/home/mery/venvs/hfi/lib/python3.7/site-packages/ray/tune/trainable/util.py", line 413, in inner
-    return trainable(config, **fn_kwargs)
-  File "train_supervised.py", line 68, in train
-    trainer.fit(model, datamodule=data_module)
-  File "/home/mery/venvs/hfi/lib/python3.7/site-packages/pytorch_lightning/trainer/trainer.py", line 609, in fit
-    self, self._fit_impl, model, train_dataloaders, val_dataloaders, datamodule, ckpt_path
-  File "/home/mery/venvs/hfi/lib/python3.7/site-packages/pytorch_lightning/trainer/call.py", line 38, in _call_and_handle_interrupt
-    return trainer_fn(*args, **kwargs)
-  File "/home/mery/venvs/hfi/lib/python3.7/site-packages/pytorch_lightning/trainer/trainer.py", line 650, in _fit_impl
-    self._run(model, ckpt_path=self.ckpt_path)
-  File "/home/mery/venvs/hfi/lib/python3.7/site-packages/pytorch_lightning/trainer/trainer.py", line 1093, in _run
-    self.strategy.setup(self)
-  File "/home/mery/venvs/hfi/lib/python3.7/site-packages/pytorch_lightning/strategies/single_device.py", line 74, in setup
-    super().setup(trainer)
-  File "/home/mery/venvs/hfi/lib/python3.7/site-packages/pytorch_lightning/strategies/strategy.py", line 154, in setup
-    self.setup_optimizers(trainer)
-  File "/home/mery/venvs/hfi/lib/python3.7/site-packages/pytorch_lightning/strategies/strategy.py", line 143, in setup_optimizers
-    self.lightning_module
-  File "/home/mery/venvs/hfi/lib/python3.7/site-packages/pytorch_lightning/core/optimizer.py", line 180, in _init_optimizers_and_lr_schedulers
-    optim_conf = model.trainer._call_lightning_module_hook("configure_optimizers", pl_module=model)
-  File "/home/mery/venvs/hfi/lib/python3.7/site-packages/pytorch_lightning/trainer/trainer.py", line 1356, in _call_lightning_module_hook
-    output = fn(*args, **kwargs)
-  File "/home/mery/hfi/src/models/transformer_classifier.py", line 41, in configure_optimizers
-    optimizer, warmup=self.warmup, max_iters=self.trainer.max_epochs*len(self.datamodule.train_dataloader())
-  File "/home/mery/hfi/src/datasets/supervised_dataset.py", line 101, in train_dataloader
-    pin_memory=PIN_MEMORY
-  File "/home/mery/venvs/hfi/lib/python3.7/site-packages/torch/utils/data/dataloader.py", line 344, in __init__
-    sampler = RandomSampler(dataset, generator=generator)  # type: ignore[arg-type]
-  File "/home/mery/venvs/hfi/lib/python3.7/site-packages/torch/utils/data/sampler.py", line 108, in __init__
-    "value, but got num_samples={}".format(self.num_samples))
-ValueError: num_samples should be a positive integer value, but got num_samples=0
-2023-04-28 22:38:17,939	ERROR tune.py:941 -- Trials did not complete: [train_92b8b_00000]
-2023-04-28 22:38:17,940	INFO tune.py:946 -- Total run time: 14.53 seconds (14.48 seconds for the tuning loop).
-== Status ==
-Current time: 2023-04-28 22:38:07 (running for 00:00:04.42)
-Using FIFO scheduling algorithm.
-Logical resource usage: 1.0/40 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:V100)
-Result logdir: /home/mery/ray_results/train_2023-04-28_22-38-03
-Number of trials: 1/1 (1 RUNNING)
-+-------------------+----------+-------------------+
-| Trial name        | status   | loc               |
-|-------------------+----------+-------------------|
-| train_92b8b_00000 | RUNNING  | 10.91.27.63:21933 |
-+-------------------+----------+-------------------+
-
-
-== Status ==
-Current time: 2023-04-28 22:38:12 (running for 00:00:09.42)
-Using FIFO scheduling algorithm.
-Logical resource usage: 1.0/40 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:V100)
-Result logdir: /home/mery/ray_results/train_2023-04-28_22-38-03
-Number of trials: 1/1 (1 RUNNING)
-+-------------------+----------+-------------------+
-| Trial name        | status   | loc               |
-|-------------------+----------+-------------------|
-| train_92b8b_00000 | RUNNING  | 10.91.27.63:21933 |
-+-------------------+----------+-------------------+
-
-
-== Status ==
-Current time: 2023-04-28 22:38:17 (running for 00:00:14.42)
-Using FIFO scheduling algorithm.
-Logical resource usage: 1.0/40 CPUs, 1.0/1 GPUs (0.0/1.0 accelerator_type:V100)
-Result logdir: /home/mery/ray_results/train_2023-04-28_22-38-03
-Number of trials: 1/1 (1 RUNNING)
-+-------------------+----------+-------------------+
-| Trial name        | status   | loc               |
-|-------------------+----------+-------------------|
-| train_92b8b_00000 | RUNNING  | 10.91.27.63:21933 |
-+-------------------+----------+-------------------+
-
-
-Result for train_92b8b_00000:
-  date: 2023-04-28_22-38-07
-  hostname: i63
-  node_ip: 10.91.27.63
-  pid: 21933
-  timestamp: 1682714287
-  trial_id: 92b8b_00000
-  
-== Status ==
-Current time: 2023-04-28 22:38:17 (running for 00:00:14.49)
-Using FIFO scheduling algorithm.
-Logical resource usage: 0/40 CPUs, 0/1 GPUs (0.0/1.0 accelerator_type:V100)
-Result logdir: /home/mery/ray_results/train_2023-04-28_22-38-03
-Number of trials: 1/1 (1 ERROR)
-+-------------------+----------+-------------------+
-| Trial name        | status   | loc               |
-|-------------------+----------+-------------------|
-| train_92b8b_00000 | ERROR    | 10.91.27.63:21933 |
-+-------------------+----------+-------------------+
-Number of errored trials: 1
-+-------------------+--------------+----------------------------------------------------------------------------------------------------+
-| Trial name        |   # failures | error file                                                                                         |
-|-------------------+--------------+----------------------------------------------------------------------------------------------------|
-| train_92b8b_00000 |            1 | /home/mery/ray_results/train_2023-04-28_22-38-03/train_92b8b_00000_0_2023-04-28_22-38-03/error.txt |
-+-------------------+--------------+----------------------------------------------------------------------------------------------------+
-
-FINISHED at Fri Apr 28 22:38:23 CEST 2023
+Traceback (most recent call last):
+  File "train_supervised.py", line 102, in <module>
+    train(config, num_epochs=20)
+  File "train_supervised.py", line 27, in train
+    encoder = TransformerEncoder(**config['encoder_cfgs'])
+  File "/home/mery/hfi/src/models/transformer_encoder.py", line 25, in __init__
+    encoder_layer = TransformerBatchNormEncoderLayer(d_model, self.n_heads, dim_feedforward, dropout*(1.0 - freeze), activation=activation)
+  File "/home/mery/hfi/src/models/transformer_encoder.py", line 75, in __init__
+    self.self_attn = MultiheadAttention(d_model, nhead, dropout=dropout)
+  File "/home/mery/venvs/hfi/lib/python3.7/site-packages/torch/nn/modules/activation.py", line 960, in __init__
+    assert self.head_dim * num_heads == self.embed_dim, "embed_dim must be divisible by num_heads"
+AssertionError: embed_dim must be divisible by num_heads
+srun: error: i63: task 0: Exited with exit code 1
+srun: Terminating job step 1355727.0
+FINISHED at Fri Apr 28 23:29:52 CEST 2023
