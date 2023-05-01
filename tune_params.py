@@ -36,19 +36,19 @@ def train(config, num_epochs=1):
 
     # Set callbacks + logger + trainer
     f1_ckpt_callback = ModelCheckpoint(
-        dirpath = f'{configs.OUT_DIR}/logsPreTrained{model.__class__.__name__}', 
+        dirpath = f'{configs.OUT_DIR}/logs{model.__class__.__name__}/params', 
         filename = "best_f1",
         save_top_k = 1, verbose=True, 
         monitor = "f1", mode="max"
     )
     val_loss_ckpt_callback = ModelCheckpoint(
-        dirpath = f'{configs.OUT_DIR}/logsPreTrained{model.__class__.__name__}', 
+        dirpath = f'{configs.OUT_DIR}/logs{model.__class__.__name__}/params', 
         filename = "best_val_loss",
         save_top_k = 1, verbose=True, 
         monitor = "val_loss", mode="min"
     )
 
-    logger = TensorBoardLogger(save_dir=configs.OUT_DIR, name=f'logsPreTrained{model.__class__.__name__}')
+    logger = TensorBoardLogger(save_dir=configs.OUT_DIR, name=f'logs{model.__class__.__name__}/params')
     
     trainer = pl.Trainer(
         max_epochs=num_epochs, 
@@ -64,31 +64,34 @@ def train(config, num_epochs=1):
 
 
 if __name__ == '__main__':
-    # Set seed
-    pl.seed_everything(42)
-    
-    lr = 5e-4
-    config = dict(
-        batch_size = 8,
-        encoder_cfgs = dict(
-            learning_rate = lr,
-            feat_dim = 19, 
-            max_len = 150, 
-            d_model = 128, 
-            num_heads = 4,
-            num_layers = 4, 
-            dim_feedforward = 512, 
-            dropout = 0.1,
-            pos_encoding = 'learnable', 
-            activation = 'gelu',
-            norm = 'BatchNorm', 
-            freeze = False
-        ),
-        classifier_cfgs = dict(
-            learning_rate = lr,
-            warmup = 400,
-            weight_decay = 1e-6
-        )
-    )
-    
-    train(config, num_epochs=20)
+    #for lr in [1e-3, 5e-4, 1e-4]:
+    for lr in [1e-3]:
+        for bsz in [8, 16, 32]:
+            for warmup in [0*(8/bsz), 200*(8/bsz), 400*(8/bsz)]:
+                    # Set seed
+                    pl.seed_everything(42)
+                    
+                    config = dict(
+                        batch_size = bsz,
+                        encoder_cfgs = dict(
+                            learning_rate = lr,
+                            feat_dim = 19, 
+                            max_len = 150, 
+                            d_model = 128, 
+                            num_heads = 4,
+                            num_layers = 4, 
+                            dim_feedforward = 512, 
+                            dropout = 0.1,
+                            pos_encoding = 'learnable', 
+                            activation = 'gelu',
+                            norm = 'BatchNorm', 
+                            freeze = False
+                        ),
+                        classifier_cfgs = dict(
+                            learning_rate = lr,
+                            warmup = warmup,
+                            weight_decay = 1e-6
+                        )
+                    )
+                    
+                    train(config, num_epochs=20)
