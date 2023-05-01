@@ -12,10 +12,10 @@ from pytorch_lightning.loggers import TensorBoardLogger
 def train(config, num_epochs=1):
     # Load data
     train_path = configs.DATA_DIR + "supervised/train/"
-    test_path = configs.DATA_DIR + "supervised/val/"
+    val_path = configs.DATA_DIR + "supervised/val/"
     
     label_encoder = LabelEncoder()
-    data_module = SupervisedDataModule(train_path, test_path, configs.FEATURES, label_encoder, config['batch_size'], normalize=False)
+    data_module = SupervisedDataModule(train_path, val_path, configs.FEATURES, label_encoder, config['batch_size'], normalize=False)
     
     # Load transformer encoder
     if configs.PRETRAINED_MODEL is not None:
@@ -97,13 +97,3 @@ if __name__ == '__main__':
                         )
                         
                         train(config, num_epochs=20)
-    
-    # # Execute the hyperparameter search
-    # ray.init()
-    # tuner = tune.Tuner(
-    #     tune.with_resources(tune.with_parameters(train,  
-    #                                              num_epochs=1), 
-    #                         {'cpu':40, 'gpu': 1}),
-    #     param_space=config
-    # )
-    # results = tuner.fit()
