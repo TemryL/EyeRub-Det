@@ -19,7 +19,7 @@ FEATURES = ['accelerometerAccelerationX(G)',
             'motionGravityZ(G)'
 ]
 
-PRETRAINED_MODEL = None
+PRETRAINED_MODEL = 'out/logsTransformerEncoder/best_val_loss-v1.ckpt'
 
 # Directories
 DATA_DIR = "data/"
