@@ -8,9 +8,12 @@ from .positional_encoding import get_pos_encoder
 
 class TransformerEncoder(UnsupervisedModel):
     def __init__(self, learning_rate, feat_dim, max_len, d_model, num_heads, num_layers, dim_feedforward, dropout=0.1,
-                pos_encoding='fixed', activation='gelu', norm='BatchNorm', freeze=False):
+                pos_encoding='fixed', activation='gelu', norm='BatchNorm', freeze=False, warmup=None, weight_decay=None, datamodule=None):
         super(TransformerEncoder, self).__init__()
         self.learning_rate = learning_rate
+        self.warmup = warmup
+        self.weight_decay = weight_decay
+        self.datamodule = datamodule
         self.max_len = max_len
         self.d_model = d_model
         self.n_heads = num_heads
