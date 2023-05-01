@@ -18,7 +18,7 @@ def train(config, num_epochs=1):
     if configs.PRETRAINED_MODEL is not None:
         model = TransformerEncoder.load_from_checkpoint(
             configs.PRETRAINED_MODEL,
-            data_module = datamodule
+            datamodule = data_module
             **config['encoder_cfgs']
         )
     else:
@@ -69,10 +69,10 @@ if __name__ == '__main__':
             learning_rate = lr,
             feat_dim = 19, 
             max_len = 150, 
-            d_model = 128, 
+            d_model = 256, 
             num_heads = 16,
-            num_layers = 2, 
-            dim_feedforward = 512, 
+            num_layers = 3, 
+            dim_feedforward = 256, 
             dropout = 0.1,
             pos_encoding = 'learnable', 
             activation = 'gelu',

@@ -1,4 +1,4 @@
-STARTING AT Mon May 1 11:40:55 CEST 2023
+STARTING AT Mon May 1 16:35:53 CEST 2023
 [rank: 0] Global seed set to 42
 GPU available: True (cuda), used: True
 TPU available: False, using: 0 TPU cores
@@ -11,133 +11,24 @@ LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
   | Name                | Type                        | Params
 --------------------------------------------------------------------
 0 | criterion           | MaskedMSELoss               | 0     
-1 | project_inp         | Linear                      | 2.6 K 
-2 | pos_enc             | LearnablePositionalEncoding | 19.2 K
-3 | transformer_encoder | TransformerEncoder          | 396 K 
-4 | output_layer        | Linear                      | 2.5 K 
+1 | project_inp         | Linear                      | 5.1 K 
+2 | pos_enc             | LearnablePositionalEncoding | 38.4 K
+3 | transformer_encoder | TransformerEncoder          | 1.2 M 
+4 | output_layer        | Linear                      | 4.9 K 
 5 | dropout1            | Dropout                     | 0     
 --------------------------------------------------------------------
-420 K     Trainable params
+1.2 M     Trainable params
 0         Non-trainable params
-420 K     Total params
-1.683     Total estimated model params size (MB)
+1.2 M     Total params
+4.943     Total estimated model params size (MB)
 SLURM auto-requeueing enabled. Setting signal handlers.
-Epoch 0, global step 135: 'val_loss' reached 0.45972 (best 0.45972), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
+Epoch 0, global step 135: 'val_loss' reached 0.37399 (best 0.37399), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v2.ckpt' as top 1
 /home/mery/venvs/hfi/lib/python3.7/site-packages/lightning_fabric/plugins/io/torch_io.py:61: UserWarning: Warning, `hyper_parameters` dropped from checkpoint. An attribute is not picklable: Can't pickle local object 'EvaluationLoop.advance.<locals>.batch_to_device'
   rank_zero_warn(f"Warning, `{key}` dropped from checkpoint. An attribute is not picklable: {err}")
-Epoch 1, global step 270: 'val_loss' reached 0.29936 (best 0.29936), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 2, global step 405: 'val_loss' reached 0.22706 (best 0.22706), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 3, global step 540: 'val_loss' reached 0.20032 (best 0.20032), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 4, global step 675: 'val_loss' reached 0.19183 (best 0.19183), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 5, global step 810: 'val_loss' reached 0.17951 (best 0.17951), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 6, global step 945: 'val_loss' reached 0.17038 (best 0.17038), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 7, global step 1080: 'val_loss' reached 0.15882 (best 0.15882), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 8, global step 1215: 'val_loss' reached 0.15201 (best 0.15201), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 9, global step 1350: 'val_loss' reached 0.14614 (best 0.14614), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 10, global step 1485: 'val_loss' reached 0.14065 (best 0.14065), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 11, global step 1620: 'val_loss' reached 0.13256 (best 0.13256), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 12, global step 1755: 'val_loss' reached 0.13010 (best 0.13010), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 13, global step 1890: 'val_loss' was not in top 1
-Epoch 14, global step 2025: 'val_loss' reached 0.12799 (best 0.12799), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 15, global step 2160: 'val_loss' reached 0.12490 (best 0.12490), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 16, global step 2295: 'val_loss' reached 0.12382 (best 0.12382), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 17, global step 2430: 'val_loss' was not in top 1
-Epoch 18, global step 2565: 'val_loss' reached 0.12265 (best 0.12265), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 19, global step 2700: 'val_loss' reached 0.12014 (best 0.12014), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 20, global step 2835: 'val_loss' was not in top 1
-Epoch 21, global step 2970: 'val_loss' reached 0.11337 (best 0.11337), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 22, global step 3105: 'val_loss' reached 0.11212 (best 0.11212), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 23, global step 3240: 'val_loss' was not in top 1
-Epoch 24, global step 3375: 'val_loss' reached 0.11085 (best 0.11085), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 25, global step 3510: 'val_loss' was not in top 1
-Epoch 26, global step 3645: 'val_loss' reached 0.10831 (best 0.10831), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 27, global step 3780: 'val_loss' was not in top 1
-Epoch 28, global step 3915: 'val_loss' was not in top 1
-Epoch 29, global step 4050: 'val_loss' was not in top 1
-Epoch 30, global step 4185: 'val_loss' was not in top 1
-Epoch 31, global step 4320: 'val_loss' was not in top 1
-Epoch 32, global step 4455: 'val_loss' was not in top 1
-Epoch 33, global step 4590: 'val_loss' was not in top 1
-Epoch 34, global step 4725: 'val_loss' reached 0.10579 (best 0.10579), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 35, global step 4860: 'val_loss' reached 0.09969 (best 0.09969), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 36, global step 4995: 'val_loss' was not in top 1
-Epoch 37, global step 5130: 'val_loss' was not in top 1
-Epoch 38, global step 5265: 'val_loss' was not in top 1
-Epoch 39, global step 5400: 'val_loss' reached 0.09848 (best 0.09848), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 40, global step 5535: 'val_loss' was not in top 1
-Epoch 41, global step 5670: 'val_loss' was not in top 1
-Epoch 42, global step 5805: 'val_loss' was not in top 1
-Epoch 43, global step 5940: 'val_loss' reached 0.09824 (best 0.09824), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 44, global step 6075: 'val_loss' reached 0.09802 (best 0.09802), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 45, global step 6210: 'val_loss' reached 0.09750 (best 0.09750), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 46, global step 6345: 'val_loss' reached 0.09576 (best 0.09576), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 47, global step 6480: 'val_loss' was not in top 1
-Epoch 48, global step 6615: 'val_loss' was not in top 1
-Epoch 49, global step 6750: 'val_loss' was not in top 1
-Epoch 50, global step 6885: 'val_loss' was not in top 1
-Epoch 51, global step 7020: 'val_loss' was not in top 1
-Epoch 52, global step 7155: 'val_loss' reached 0.09179 (best 0.09179), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 53, global step 7290: 'val_loss' was not in top 1
-Epoch 54, global step 7425: 'val_loss' was not in top 1
-Epoch 55, global step 7560: 'val_loss' was not in top 1
-Epoch 56, global step 7695: 'val_loss' reached 0.09133 (best 0.09133), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 57, global step 7830: 'val_loss' reached 0.09129 (best 0.09129), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 58, global step 7965: 'val_loss' was not in top 1
-Epoch 59, global step 8100: 'val_loss' was not in top 1
-Epoch 60, global step 8235: 'val_loss' reached 0.08951 (best 0.08951), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 61, global step 8370: 'val_loss' was not in top 1
-Epoch 62, global step 8505: 'val_loss' was not in top 1
-Epoch 63, global step 8640: 'val_loss' reached 0.08817 (best 0.08817), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 64, global step 8775: 'val_loss' was not in top 1
-Epoch 65, global step 8910: 'val_loss' was not in top 1
-Epoch 66, global step 9045: 'val_loss' was not in top 1
-Epoch 67, global step 9180: 'val_loss' reached 0.08579 (best 0.08579), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 68, global step 9315: 'val_loss' was not in top 1
-Epoch 69, global step 9450: 'val_loss' was not in top 1
-Epoch 70, global step 9585: 'val_loss' was not in top 1
-Epoch 71, global step 9720: 'val_loss' was not in top 1
-Epoch 72, global step 9855: 'val_loss' was not in top 1
-Epoch 73, global step 9990: 'val_loss' was not in top 1
-Epoch 74, global step 10125: 'val_loss' was not in top 1
-Epoch 75, global step 10260: 'val_loss' was not in top 1
-Epoch 76, global step 10395: 'val_loss' was not in top 1
-Epoch 77, global step 10530: 'val_loss' reached 0.08552 (best 0.08552), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 78, global step 10665: 'val_loss' reached 0.08450 (best 0.08450), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 79, global step 10800: 'val_loss' was not in top 1
-Epoch 80, global step 10935: 'val_loss' reached 0.08235 (best 0.08235), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 81, global step 11070: 'val_loss' reached 0.08214 (best 0.08214), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 82, global step 11205: 'val_loss' was not in top 1
-Epoch 83, global step 11340: 'val_loss' was not in top 1
-Epoch 84, global step 11475: 'val_loss' was not in top 1
-Epoch 85, global step 11610: 'val_loss' was not in top 1
-Epoch 86, global step 11745: 'val_loss' was not in top 1
-Epoch 87, global step 11880: 'val_loss' was not in top 1
-Epoch 88, global step 12015: 'val_loss' was not in top 1
-Epoch 89, global step 12150: 'val_loss' was not in top 1
-Epoch 90, global step 12285: 'val_loss' was not in top 1
-Epoch 91, global step 12420: 'val_loss' was not in top 1
-Epoch 92, global step 12555: 'val_loss' was not in top 1
-Epoch 93, global step 12690: 'val_loss' was not in top 1
-Epoch 94, global step 12825: 'val_loss' was not in top 1
-Epoch 95, global step 12960: 'val_loss' was not in top 1
-Epoch 96, global step 13095: 'val_loss' was not in top 1
-Epoch 97, global step 13230: 'val_loss' reached 0.08173 (best 0.08173), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 98, global step 13365: 'val_loss' was not in top 1
-Epoch 99, global step 13500: 'val_loss' reached 0.08163 (best 0.08163), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 100, global step 13635: 'val_loss' reached 0.08142 (best 0.08142), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 101, global step 13770: 'val_loss' reached 0.07977 (best 0.07977), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 102, global step 13905: 'val_loss' was not in top 1
-Epoch 103, global step 14040: 'val_loss' was not in top 1
-Epoch 104, global step 14175: 'val_loss' was not in top 1
-Epoch 105, global step 14310: 'val_loss' reached 0.07591 (best 0.07591), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v4.ckpt' as top 1
-Epoch 106, global step 14445: 'val_loss' was not in top 1
-Epoch 107, global step 14580: 'val_loss' was not in top 1
-Epoch 108, global step 14715: 'val_loss' was not in top 1
-Epoch 109, global step 14850: 'val_loss' was not in top 1
-Epoch 110, global step 14985: 'val_loss' was not in top 1
-Epoch 111, global step 15120: 'val_loss' was not in top 1
-Epoch 112, global step 15255: 'val_loss' was not in top 1
-Epoch 113, global step 15390: 'val_loss' was not in top 1
-Epoch 114, global step 15525: 'val_loss' was not in top 1
-Epoch 115, global step 15660: 'val_loss' was not in top 1
-Epoch 116, global step 15795: 'val_loss' was not in top 1
+Epoch 1, global step 270: 'val_loss' reached 0.23590 (best 0.23590), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v2.ckpt' as top 1
+Epoch 2, global step 405: 'val_loss' reached 0.20560 (best 0.20560), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v2.ckpt' as top 1
+Epoch 3, global step 540: 'val_loss' reached 0.19075 (best 0.19075), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v2.ckpt' as top 1
+Epoch 4, global step 675: 'val_loss' reached 0.16155 (best 0.16155), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v2.ckpt' as top 1
+Epoch 5, global step 810: 'val_loss' reached 0.15160 (best 0.15160), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v2.ckpt' as top 1
+Epoch 6, global step 945: 'val_loss' reached 0.14007 (best 0.14007), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v2.ckpt' as top 1
+Epoch 7, global step 1080: 'val_loss' reached 0.12854 (best 0.12854), saving model to '/home/mery/hfi/out/logsTransformerEncoder/best_val_loss-v2.ckpt' as top 1
