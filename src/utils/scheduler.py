@@ -17,6 +17,6 @@ class CosineWarmupScheduler(torch.optim.lr_scheduler._LRScheduler):
 
     def get_lr_factor(self, epoch):
         lr_factor = 0.5 * (1 + np.cos(np.pi * epoch / self.max_iters))
-        if epoch <= self.warmup:
+        if (epoch <= self.warmup) and (self.warmup != 0):
             lr_factor *= epoch * 1.0 / self.warmup
         return lr_factor
