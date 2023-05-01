@@ -51,9 +51,9 @@ if __name__ == '__main__':
     # Set seed
     pl.seed_everything(42)
     
-    lr = 5e-4
+    lr = 1e-3
     config = dict(
-        batch_size = 8,
+        batch_size = 128,
         unsupervised_dataset = dict(
             features = configs.FEATURES, 
             window_size = 150, 
@@ -78,9 +78,9 @@ if __name__ == '__main__':
             activation = 'gelu',
             norm = 'BatchNorm', 
             freeze = False,
-            warmup = 400,
+            warmup = 6000,
             weight_decay = 1e-6,
         )
     )
     
-    train(config, num_epochs=20)
+    train(config, num_epochs=500)

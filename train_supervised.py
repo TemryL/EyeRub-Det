@@ -74,25 +74,25 @@ if __name__ == '__main__':
                         
                         lr = 5e-4
                         config = dict(
-                            batch_size=8,
+                            batch_size = 8,
                             encoder_cfgs = dict(
-                                learning_rate=lr,
-                                feat_dim=19, 
-                                max_len=150, 
-                                d_model=d_model, 
-                                num_heads=num_heads,
-                                num_layers=num_layers, 
-                                dim_feedforward=dim_fc, 
-                                dropout=0.1,
-                                pos_encoding='learnable', 
-                                activation='gelu',
-                                norm='BatchNorm', 
-                                freeze=False
+                                learning_rate = lr,
+                                feat_dim = 19, 
+                                max_len = 150, 
+                                d_model = d_model, 
+                                num_heads = num_heads,
+                                num_layers = num_layers, 
+                                dim_feedforward = dim_fc, 
+                                dropout = 0.1,
+                                pos_encoding = 'learnable', 
+                                activation = 'gelu',
+                                norm = 'BatchNorm', 
+                                freeze = False
                             ),
                             classifier_cfgs = dict(
-                                learning_rate=lr,
-                                warmup=400,
-                                weight_decay=1e-6
+                                learning_rate = lr,
+                                warmup = 400,
+                                weight_decay = 1e-6
                             )
                         )
                         
