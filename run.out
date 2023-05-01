@@ -1,17 +1,9 @@
-STARTING AT Fri Apr 28 23:29:38 CEST 2023
+STARTING AT Mon May 1 10:18:57 CEST 2023
 [rank: 0] Global seed set to 42
 Traceback (most recent call last):
-  File "train_supervised.py", line 102, in <module>
-    train(config, num_epochs=20)
-  File "train_supervised.py", line 27, in train
-    encoder = TransformerEncoder(**config['encoder_cfgs'])
-  File "/home/mery/hfi/src/models/transformer_encoder.py", line 25, in __init__
-    encoder_layer = TransformerBatchNormEncoderLayer(d_model, self.n_heads, dim_feedforward, dropout*(1.0 - freeze), activation=activation)
-  File "/home/mery/hfi/src/models/transformer_encoder.py", line 75, in __init__
-    self.self_attn = MultiheadAttention(d_model, nhead, dropout=dropout)
-  File "/home/mery/venvs/hfi/lib/python3.7/site-packages/torch/nn/modules/activation.py", line 960, in __init__
-    assert self.head_dim * num_heads == self.embed_dim, "embed_dim must be divisible by num_heads"
-AssertionError: embed_dim must be divisible by num_heads
+  File "train_unsupervised.py", line 63, in <module>
+    d_model=d_model, 
+NameError: name 'd_model' is not defined
 srun: error: i63: task 0: Exited with exit code 1
-srun: Terminating job step 1355727.0
-FINISHED at Fri Apr 28 23:29:52 CEST 2023
+srun: Terminating job step 1356305.0
+FINISHED at Mon May 1 10:19:34 CEST 2023
