@@ -3,3 +3,4 @@ data/
 pretrained/
 out/
 *__pycache__
+*.mlmodel
