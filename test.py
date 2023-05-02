@@ -2,6 +2,8 @@ import torch
 import torch.nn.functional as F
 import src.configs as configs
 import pytorch_lightning as pl
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 from src.models.label_encoder import LabelEncoder
 from src.datasets.supervised_dataset import SupervisedDataset
@@ -28,7 +30,7 @@ def test(config, ckpt_path):
         **config['classifier_cfgs']
     ).eval()
 
-    # Make inferences and compute performances
+    # Make inferences
     preds = []
     targets = []
     for sequence, label in val_dataset:
@@ -40,11 +42,18 @@ def test(config, ckpt_path):
         preds.append(y_pred)
         targets.append(label)
     
+    # Compute performances
     preds = torch.Tensor(preds)
     targets = torch.Tensor(targets)
+    cm = model.confmat(preds, targets)
+    cm = cm / cm.sum(axis=1)[:, None]    # row normalization
 
     print(f"Acc: {model.accuracy(preds, targets)}")
     print(f"F1: {model.f1(preds, targets)}")
+    
+    fig, ax = plt.subplots(figsize=(10,10))
+    fig_ = sns.heatmap(cm.to('cpu').numpy(), annot=True, cmap='Blues', ax=ax)
+    plt.show()
 
 
 if __name__ == '__main__':

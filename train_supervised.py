@@ -36,19 +36,19 @@ def train(config, num_epochs=1):
 
     # Set callbacks + logger + trainer
     f1_ckpt_callback = ModelCheckpoint(
-        dirpath = f'{configs.OUT_DIR}/logsPreTrained{model.__class__.__name__}', 
+        dirpath = f'{configs.OUT_DIR}/logsBinary{model.__class__.__name__}', 
         filename = "best_f1",
         save_top_k = 1, verbose=True, 
         monitor = "f1", mode="max"
     )
     val_loss_ckpt_callback = ModelCheckpoint(
-        dirpath = f'{configs.OUT_DIR}/logsPreTrained{model.__class__.__name__}', 
+        dirpath = f'{configs.OUT_DIR}/logsBinary{model.__class__.__name__}', 
         filename = "best_val_loss",
         save_top_k = 1, verbose=True, 
         monitor = "val_loss", mode="min"
     )
 
-    logger = TensorBoardLogger(save_dir=configs.OUT_DIR, name=f'logsPreTrained{model.__class__.__name__}')
+    logger = TensorBoardLogger(save_dir=configs.OUT_DIR, name=f'logsBinary{model.__class__.__name__}')
     
     trainer = pl.Trainer(
         max_epochs=num_epochs, 
@@ -69,7 +69,7 @@ if __name__ == '__main__':
     
     lr = 5e-4
     config = dict(
-        batch_size = 8,
+        batch_size = 16,
         encoder_cfgs = dict(
             learning_rate = lr,
             feat_dim = 19, 
@@ -86,7 +86,7 @@ if __name__ == '__main__':
         ),
         classifier_cfgs = dict(
             learning_rate = lr,
-            warmup = 400,
+            warmup = 200,
             weight_decay = 1e-6
         )
     )
