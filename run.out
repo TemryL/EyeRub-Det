@@ -1,5 +1,52 @@
-STARTING AT Tue May 2 10:23:23 CEST 2023
+STARTING AT Tue May 2 11:04:05 CEST 2023
+
+Due to MODULEPATH changes, the following have been reloaded:
+  1) bzip2/1.0.8     2) python/3.7.7     3) tcl/8.6.8     4) tk/8.6.8
+
+The following have been reloaded with a version change:
+  1) gcc/9.3.0-cuda => gcc/8.4.0-cuda
+
 [rank: 0] Global seed set to 42
-Acc: 0.6412556171417236
-f1: 0.6322364211082458
-FINISHED at Tue May 2 10:23:32 CEST 2023
+GPU available: True (cuda), used: True
+TPU available: False, using: 0 TPU cores
+IPU available: False, using: 0 IPUs
+HPU available: False, using: 0 HPUs
+/home/mery/venvs/hfi/lib/python3.7/site-packages/pytorch_lightning/callbacks/model_checkpoint.py:613: UserWarning: Checkpoint directory /home/mery/hfi/out/logsBinaryTransformerClassifier exists and is not empty.
+  rank_zero_warn(f"Checkpoint directory {dirpath} exists and is not empty.")
+LOCAL_RANK: 0 - CUDA_VISIBLE_DEVICES: [0]
+
+  | Name        | Type                      | Params
+----------------------------------------------------------
+0 | criterion   | CrossEntropyLoss          | 0     
+1 | accuracy    | MulticlassAccuracy        | 0     
+2 | f1          | MulticlassF1Score         | 0     
+3 | confmat     | MulticlassConfusionMatrix | 0     
+4 | encoder     | TransformerEncoder        | 817 K 
+5 | global_attn | GlobalTemporalAttention   | 16.6 K
+6 | classifier  | Linear                    | 645   
+----------------------------------------------------------
+834 K     Trainable params
+0         Non-trainable params
+834 K     Total params
+3.338     Total estimated model params size (MB)
+SLURM auto-requeueing enabled. Setting signal handlers.
+Epoch 0, global step 102: 'f1' reached 0.45621 (best 0.45621), saving model to '/home/mery/hfi/out/logsBinaryTransformerClassifier/best_f1-v2.ckpt' as top 1
+Epoch 0, global step 102: 'val_loss' reached 1.36325 (best 1.36325), saving model to '/home/mery/hfi/out/logsBinaryTransformerClassifier/best_val_loss-v2.ckpt' as top 1
+Epoch 1, global step 204: 'f1' reached 0.54570 (best 0.54570), saving model to '/home/mery/hfi/out/logsBinaryTransformerClassifier/best_f1-v2.ckpt' as top 1
+Epoch 1, global step 204: 'val_loss' reached 1.13309 (best 1.13309), saving model to '/home/mery/hfi/out/logsBinaryTransformerClassifier/best_val_loss-v2.ckpt' as top 1
+Epoch 2, global step 306: 'f1' reached 0.55357 (best 0.55357), saving model to '/home/mery/hfi/out/logsBinaryTransformerClassifier/best_f1-v2.ckpt' as top 1
+Epoch 2, global step 306: 'val_loss' was not in top 1
+Epoch 3, global step 408: 'f1' reached 0.58486 (best 0.58486), saving model to '/home/mery/hfi/out/logsBinaryTransformerClassifier/best_f1-v2.ckpt' as top 1
+Epoch 3, global step 408: 'val_loss' was not in top 1
+Epoch 4, global step 510: 'f1' reached 0.63224 (best 0.63224), saving model to '/home/mery/hfi/out/logsBinaryTransformerClassifier/best_f1-v2.ckpt' as top 1
+Epoch 4, global step 510: 'val_loss' reached 1.01167 (best 1.01167), saving model to '/home/mery/hfi/out/logsBinaryTransformerClassifier/best_val_loss-v2.ckpt' as top 1
+Epoch 5, global step 612: 'f1' was not in top 1
+Epoch 5, global step 612: 'val_loss' was not in top 1
+Epoch 6, global step 714: 'f1' was not in top 1
+Epoch 6, global step 714: 'val_loss' was not in top 1
+Epoch 7, global step 816: 'f1' was not in top 1
+Epoch 7, global step 816: 'val_loss' was not in top 1
+Epoch 8, global step 918: 'f1' was not in top 1
+Epoch 8, global step 918: 'val_loss' was not in top 1
+Epoch 9, global step 1020: 'f1' was not in top 1
+Epoch 9, global step 1020: 'val_loss' was not in top 1

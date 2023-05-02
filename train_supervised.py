@@ -1,7 +1,7 @@
 import src.configs as configs
 import pytorch_lightning as pl
 
-from src.models.label_encoder import LabelEncoder
+from src.models.label_encoder import LabelEncoder, BinaryLabelEncoder
 from src.datasets.supervised_dataset import SupervisedDataModule
 from src.models.transformer_encoder import TransformerEncoder
 from src.models.transformer_classifier import TransformerClassifier
