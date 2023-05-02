@@ -26,23 +26,25 @@ def test(config, ckpt_path):
         encoder=encoder,
         n_classes=len(list(val_dataset.label_encoder.decode_map.values())),
         **config['classifier_cfgs']
-    )
+    ).eval()
 
     # Make inferences and compute performances
     preds = []
     targets = []
     for sequence, label in val_dataset:
         y_hat = model(sequence.view(1, 150, 19))
-        y_pred = F.softmax(y_hat)
+        y_hat = F.softmax(y_hat, dim=1)
+        
+        # Decision
+        y_pred = torch.argmax(y_hat, dim=1).item()
         preds.append(y_pred)
         targets.append(label)
     
-    print(preds)
     preds = torch.Tensor(preds)
     targets = torch.Tensor(targets)
 
     print(f"Acc: {model.accuracy(preds, targets)}")
-    print(f"f1: {model.f1(preds, targets)}")
+    print(f"F1: {model.f1(preds, targets)}")
 
 
 if __name__ == '__main__':
