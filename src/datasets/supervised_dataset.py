@@ -6,6 +6,7 @@ import pytorch_lightning as pl
 
 from glob import glob
 from torch.utils.data import Dataset, DataLoader
+from torchsampler import ImbalancedDatasetSampler
 from ..configs import NUM_WORKERS, PIN_MEMORY
 
 MEANS = [0.3622545097138867,
@@ -96,6 +97,7 @@ class SupervisedDataModule(pl.LightningDataModule):
         return DataLoader(
             self.train_dataset,
             batch_size = self.batch_size,
+            #sampler = ImbalancedDatasetSampler(self.train_dataset),
             shuffle=True,
             num_workers = NUM_WORKERS,
             pin_memory=PIN_MEMORY
