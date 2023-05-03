@@ -51,8 +51,12 @@ def test(config, ckpt_path):
     print(f"Acc: {model.accuracy(preds, targets)}")
     print(f"F1: {model.f1(preds, targets)}")
     
-    fig, ax = plt.subplots(figsize=(10,10))
-    fig_ = sns.heatmap(cm.to('cpu').numpy(), annot=True, cmap='Blues', ax=ax)
+    fig, ax = plt.subplots(figsize=(8,8))
+    fig_ = sns.heatmap(cm.to('cpu').numpy(), annot=True, cmap='Blues', ax=ax, 
+                    xticklabels=label_encoder.decode_map.values(), 
+                    yticklabels=label_encoder.decode_map.values())
+    plt.xticks(rotation=0) 
+    plt.yticks(rotation=0) 
     plt.show()
 
 

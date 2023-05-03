@@ -20,7 +20,7 @@ class LabelEncoder():
         self.decode_map = {
             0: "Face touching",
             1: "Eye rubbing",
-            2: "Hair combing/Skin scratching",
+            2: "Hair combing \n Skin scratching",
             3: "Teeth brushing",
             4: "Nothing"
         }

@@ -6,7 +6,7 @@ import pytorch_lightning as pl
 
 from glob import glob
 from torch.utils.data import Dataset, DataLoader
-from torchsampler import ImbalancedDatasetSampler
+#from torchsampler import ImbalancedDatasetSampler
 from ..configs import NUM_WORKERS, PIN_MEMORY
 
 MEANS = [0.3622545097138867,
