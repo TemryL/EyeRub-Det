@@ -6,7 +6,7 @@ from ..utils.scheduler import CosineWarmupScheduler
 
 
 class TransformerClassifier(SupervisedModel):
-    def __init__(self, encoder, n_classes, learning_rate, warmup, weight_decay, datamodule):
+    def __init__(self, encoder, n_classes, learning_rate, warmup, weight_decay, datamodule, freeze=False):
         super().__init__(n_classes)
         self.learning_rate = learning_rate
         self.warmup = warmup

@@ -26,6 +26,6 @@ DATA_DIR = "data/"
 OUT_DIR = "out/"
 
 # Compute related
-ACCELERATOR = "gpu"
-NUM_WORKERS = 20
-PIN_MEMORY = True
+ACCELERATOR = "cpu"
+NUM_WORKERS = 4
+PIN_MEMORY = False
