@@ -28,6 +28,7 @@ def fine_tune(config, ckpt_path, num_epochs=1):
         n_classes=len(list(data_module.label_encoder.decode_map.values())),
         **config['classifier_cfgs']
     )
+    #model.encoder.freeze()
     
     # Set callbacks + logger + trainer
     f1_ckpt_callback = ModelCheckpoint(
@@ -62,28 +63,29 @@ if __name__ == '__main__':
     # Set seed
     pl.seed_everything(42)
     
-    lr = 5e-4
-    config = dict(
-        batch_size = 8,
-        encoder_cfgs = dict(
-            learning_rate = lr,
-            feat_dim = 19, 
-            max_len = 150, 
-            d_model = 128, 
-            num_heads = 4,
-            num_layers = 4, 
-            dim_feedforward = 512, 
-            dropout = 0.1,
-            pos_encoding = 'learnable', 
-            activation = 'gelu',
-            norm = 'BatchNorm', 
-            freeze = False
-        ),
-        classifier_cfgs = dict(
-            learning_rate = lr,
-            warmup = 200,
-            weight_decay = 1e-6
+    lr = 7e-4
+    for warmup in [0, 5, 10, 15]:
+        config = dict(
+            batch_size = 8,
+            encoder_cfgs = dict(
+                learning_rate = lr,
+                feat_dim = 19, 
+                max_len = 150, 
+                d_model = 128, 
+                num_heads = 4,
+                num_layers = 4, 
+                dim_feedforward = 512, 
+                dropout = 0.1,
+                pos_encoding = 'learnable', 
+                activation = 'gelu',
+                norm = 'BatchNorm', 
+                freeze = False
+            ),
+            classifier_cfgs = dict(
+                learning_rate = lr,
+                warmup = warmup,
+                weight_decay = 1e-6
+            )
         )
-    )
-    
-    fine_tune(config, ckpt_path='out/logsTransformerClassifier/reg/best_val_loss-v25.ckpt', num_epochs=20)
+        
+        fine_tune(config, ckpt_path='out/logsTransformerClassifier/reg/best_val_loss-v25.ckpt', num_epochs=10)
