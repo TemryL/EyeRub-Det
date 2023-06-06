@@ -5,7 +5,6 @@ import pytorch_lightning as pl
 
 from ..utils.masking import noise_mask
 from torch.utils.data import Dataset, DataLoader
-from ..configs import NUM_WORKERS, PIN_MEMORY
 
 
 class UnsupervisedDataset(Dataset):
@@ -41,12 +40,14 @@ class UnsupervisedDataset(Dataset):
 
 
 class UnsupervisedDataModule(pl.LightningDataModule):
-    def __init__(self, train_path, test_path, batch_size, config):
+    def __init__(self, train_path, test_path, batch_size, config, num_workers, pin_memory):
         super().__init__()
         self.train_path = train_path
         self.test_path = test_path
         self.batch_size = batch_size
         self.config = config
+        self.num_workers = num_workers
+        self.pin_memory = pin_memory
 
     def setup(self, stage=None):
         self.train_dataset = UnsupervisedDataset(self.train_path, **self.config)
@@ -57,8 +58,8 @@ class UnsupervisedDataModule(pl.LightningDataModule):
             self.train_dataset,
             batch_size = self.batch_size,
             shuffle = True,
-            num_workers = NUM_WORKERS,
-            pin_memory=PIN_MEMORY
+            num_workers = self.num_workers,
+            pin_memory = self.pin_memory
         )
     
     def val_dataloader(self):
@@ -66,8 +67,8 @@ class UnsupervisedDataModule(pl.LightningDataModule):
             self.test_dataset,
             batch_size = self.batch_size,
             shuffle = False,
-            num_workers = NUM_WORKERS,
-            pin_memory=PIN_MEMORY
+            num_workers = self.num_workers,
+            pin_memory = self.pin_memory
         )
 
     def test_dataloader(self):
@@ -75,6 +76,6 @@ class UnsupervisedDataModule(pl.LightningDataModule):
             self.test_dataset,
             batch_size = self.batch_size,
             shuffle = False,
-            num_workers = NUM_WORKERS,
-            pin_memory=PIN_MEMORY
+            num_workers = self.num_workers,
+            pin_memory = self.pin_memory
         )

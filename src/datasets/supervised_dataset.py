@@ -3,11 +3,9 @@ import torch
 import pandas as pd
 import pytorch_lightning as pl
 
-
 from glob import glob
 from torch.utils.data import Dataset, DataLoader
-#from torchsampler import ImbalancedDatasetSampler
-from ..configs import NUM_WORKERS, PIN_MEMORY
+
 
 MEANS = [0.3622545097138867,
     0.16703852412033413,
@@ -80,14 +78,16 @@ class SupervisedDataset(Dataset):
 
 
 class SupervisedDataModule(pl.LightningDataModule):
-    def __init__(self, train_path, test_path, features, label_encoder, batch_size, normalize):
+    def __init__(self, train_path, test_path, features, label_encoder, batch_size, normalize, num_workers, pin_memory):
         super().__init__()
         self.train_path = train_path
         self.test_path = test_path
         self.features = features
         self.label_encoder = label_encoder
         self.batch_size = batch_size
-        self.normalize = normalize 
+        self.normalize = normalize
+        self.num_workers = num_workers
+        self.pin_memory = pin_memory
 
     def setup(self, stage=None):
         self.train_dataset = SupervisedDataset(self.train_path, self.features, self.label_encoder, self.normalize)
@@ -97,10 +97,9 @@ class SupervisedDataModule(pl.LightningDataModule):
         return DataLoader(
             self.train_dataset,
             batch_size = self.batch_size,
-            #sampler = ImbalancedDatasetSampler(self.train_dataset),
-            shuffle=True,
-            num_workers = NUM_WORKERS,
-            pin_memory=PIN_MEMORY
+            shuffle = True,
+            num_workers = self.num_workers,
+            pin_memory = self.pin_memory
         )
     
     def val_dataloader(self):
@@ -108,8 +107,8 @@ class SupervisedDataModule(pl.LightningDataModule):
             self.test_dataset,
             batch_size = self.batch_size,
             shuffle = False,
-            num_workers = NUM_WORKERS,
-            pin_memory=PIN_MEMORY
+            num_workers = self.num_workers,
+            pin_memory = self.pin_memory
         )
 
     def test_dataloader(self):
@@ -117,6 +116,6 @@ class SupervisedDataModule(pl.LightningDataModule):
             self.test_dataset,
             batch_size = self.batch_size,
             shuffle = False,
-            num_workers = NUM_WORKERS,
-            pin_memory=PIN_MEMORY
+            num_workers = self.num_workers,
+            pin_memory = self.pin_memory
         )

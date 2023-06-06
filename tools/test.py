@@ -13,6 +13,7 @@ from src.models.transformer_classifier import TransformerClassifier
 
 def test(config, ckpt_path):
     # Load data
+    #val_path = configs.DATA_DIR + "supervised/use_case/user62/test"
     val_path = configs.DATA_DIR + "supervised/test"
     
     label_encoder = LabelEncoder()
@@ -89,3 +90,4 @@ if __name__ == '__main__':
     )
     
     test(config, ckpt_path='out/logsTransformerClassifier/reg/best_val_loss-v25.ckpt')
+    # test(config, ckpt_path='out/logsFineTunedTransformerClassifier/best_val_loss-v3.ckpt')
