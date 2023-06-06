@@ -13,7 +13,7 @@ from src.models.transformer_classifier import TransformerClassifier
 
 def test(config, ckpt_path):
     # Load data
-    val_path = configs.DATA_DIR + "supervised/use_case/user62/test"
+    val_path = configs.DATA_DIR + "supervised/test"
     
     label_encoder = LabelEncoder()
     val_dataset = SupervisedDataset(val_path, configs.FEATURES, label_encoder, normalize=False)
