@@ -20,8 +20,8 @@ features = ['accelerometerAccelerationX(G)',
 ]
 normalize = False
 
-lr = 1e-3
-batch_size = 8
+lr = 5e-4
+batch_size = 16
 weight_decay = 1e-6
 model_name = 'DeepConvLSTM'
 
