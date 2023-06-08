@@ -21,8 +21,9 @@ features = ['accelerometerAccelerationX(G)',
 normalize = False
 
 lr = 5e-4
-batch_size = 8
+batch_size = 16
 
+model_name = 'Transformer'
 pretrained_model = None
 model_cfgs = dict(
     encoder_cfgs = dict(
@@ -50,9 +51,9 @@ model_cfgs = dict(
 data_dir = "data/"
 train_path = "data/supervised/train"
 val_path = "data/supervised/val"
-out_dir = "out_test/"
+out_dir = "v1_scratch/"
 
 # Compute related
-accelerator = "cpu"
-num_workers = 1
+accelerator = "gpu"
+num_workers = 20
 pin_memory = False
