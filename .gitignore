@@ -6,3 +6,4 @@ out/
 *.mlmodel
 *.out
 *.slurm
+logs/

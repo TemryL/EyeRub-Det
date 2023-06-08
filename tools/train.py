@@ -5,6 +5,8 @@ from src.datasets.unsupervised_dataset import UnsupervisedDataModule
 from src.datasets.supervised_dataset import SupervisedDataModule
 from src.models.transformer_encoder import TransformerEncoder
 from src.models.transformer_classifier import TransformerClassifier
+from src.models.cnn import CNN
+from src.models.deep_conv_lstm import DeepConvLSTM
 from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.loggers import TensorBoardLogger
 
@@ -60,22 +62,38 @@ def train_supervised(config, num_epochs=1):
                                     num_workers=config.num_workers, 
                                     pin_memory=config.pin_memory)
     
-    # Load transformer encoder
-    if config.pretrained_model is not None:
-        encoder = TransformerEncoder.load_from_checkpoint(
-            config.pretrained_model,
-            **config.model_cfgs['encoder_cfgs']
+    # Initialize model
+    if config.model_name == 'Transformer':
+        # Load transformer encoder
+        if config.pretrained_model is not None:
+            encoder = TransformerEncoder.load_from_checkpoint(
+                config.pretrained_model,
+                **config.model_cfgs['encoder_cfgs']
+            )
+        else:
+            encoder = TransformerEncoder(**config.model_cfgs['encoder_cfgs'])
+        
+        # Load transformer classifier
+        model = TransformerClassifier(
+            datamodule=data_module,
+            encoder=encoder,
+            n_classes=len(list(data_module.label_encoder.decode_map.values())),
+            **config.model_cfgs['classifier_cfgs']
         )
-    else:
-        encoder = TransformerEncoder(**config.model_cfgs['encoder_cfgs'])
     
-    # Load transformer classifier
-    model = TransformerClassifier(
-        datamodule=data_module,
-        encoder=encoder,
-        n_classes=len(list(data_module.label_encoder.decode_map.values())),
-        **config.model_cfgs['classifier_cfgs']
-    )
+    elif config.model_name == 'CNN':
+        model = CNN(n_features=len(config.features),
+                    n_classes=len(list(data_module.label_encoder.decode_map.values())),
+                    learning_rate=config.lr,
+                    weight_decay=config.weight_decay, 
+                    datamodule=data_module)
+    
+    elif config.model_name == 'DeepConvLSTM':
+        model = DeepConvLSTM(n_features=len(config.features),
+                    n_classes=len(list(data_module.label_encoder.decode_map.values())),
+                    learning_rate=config.lr,
+                    weight_decay=config.weight_decay, 
+                    datamodule=data_module)
 
     # Set callbacks + logger + trainer
     f1_ckpt_callback = ModelCheckpoint(
