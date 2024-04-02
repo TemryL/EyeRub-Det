@@ -51,7 +51,7 @@ model_cfgs = dict(
 data_dir = "data/"
 train_path = "data/supervised/train"
 val_path = "data/supervised/val"
-out_dir = "v0_scratch/"
+out_dir = "out/v0_scratch/"
 
 # Compute related
 accelerator = "gpu"

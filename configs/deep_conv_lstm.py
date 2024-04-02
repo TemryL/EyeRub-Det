@@ -29,7 +29,7 @@ model_name = 'DeepConvLSTM'
 data_dir = "data/"
 train_path = "data/supervised/train"
 val_path = "data/supervised/val"
-out_dir = "logs/DeepConvLSTM/"
+out_dir = "out/DeepConvLSTM/"
 
 # Compute related
 accelerator = "gpu"

@@ -29,9 +29,9 @@ model_name = 'CNN'
 data_dir = "data/"
 train_path = "data/supervised/train"
 val_path = "data/supervised/val"
-out_dir = "logs/CNN/"
+out_dir = "out/CNN/"
 
 # Compute related
-accelerator = "cpu"
-num_workers = 1
+accelerator = "gpu"
+num_workers = 20
 pin_memory = False

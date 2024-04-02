@@ -51,9 +51,9 @@ model_cfgs = dict(
 data_dir = "data/"
 train_path = "data/supervised/train"
 val_path = "data/supervised/val"
-out_dir = "v1_scratch/"
+out_dir = "out/v1_scratch/"
 
 # Compute related
-accelerator = "cpu"
-num_workers = 8
+accelerator = "gpu"
+num_workers = 20
 pin_memory = False

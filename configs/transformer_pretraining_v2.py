@@ -38,10 +38,10 @@ encoder_cfgs = dict(
     learning_rate = lr,
     feat_dim = 19, 
     max_len = 150, 
-    d_model = 256, 
+    d_model = 128, 
     num_heads = 16,
-    num_layers = 3, 
-    dim_feedforward = 256, 
+    num_layers = 4, 
+    dim_feedforward = 512, 
     dropout = 0.1,
     pos_encoding = 'learnable', 
     activation = 'gelu',
@@ -54,10 +54,10 @@ encoder_cfgs = dict(
 # Directories
 data_dir = "data/"
 train_path = "data/unsupervised/train.csv"
-val_path = "data/unsupervised/train.csv"
-out_dir = "out_test/"
+val_path = "data/unsupervised/val.csv"
+out_dir = "out/pretraining_v2/"
 
 # Compute related
-accelerator = "cpu"
-num_workers = 1
+accelerator = "gpu"
+num_workers = 20
 pin_memory = False
