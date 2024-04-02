@@ -53,8 +53,8 @@ encoder_cfgs = dict(
 
 # Directories
 data_dir = "data/"
-train_path = "data/unsupervised/train.csv"
-val_path = "data/unsupervised/val.csv"
+train_path = "data/automatic/set_1/all.csv"
+val_path = "data/automatic/set_2/all.csv"
 out_dir = "out/pretraining_v2/"
 
 # Compute related
