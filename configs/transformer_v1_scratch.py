@@ -54,6 +54,6 @@ val_path = "data/supervised/val"
 out_dir = "v1_scratch/"
 
 # Compute related
-accelerator = "gpu"
-num_workers = 20
+accelerator = "cpu"
+num_workers = 8
 pin_memory = False
