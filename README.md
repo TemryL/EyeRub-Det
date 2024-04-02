@@ -1,7 +1,11 @@
-# Hello
+# Eye-Rubbing Detection Using a Smartwatch 
 
 ```bash
 pip install -r requirements.txt
+```
+## Get Data
+```bash
+wget ...
 ```
 
 ## CNN

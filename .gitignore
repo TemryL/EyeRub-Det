@@ -8,6 +8,7 @@ out/
 *.slurm
 logs/
 logs_old/
+jobs/
 
 # Custom ignore
 temp/
