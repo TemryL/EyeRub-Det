@@ -24,7 +24,7 @@ lr = 5e-4
 batch_size = 16
 
 model_name = 'Transformer'
-pretrained_model = 'logsTransformerEncoder/best_val_loss.ckpt'
+pretrained_model = 'out/pretraining_v0/best_val_loss.ckpt'
 model_cfgs = dict(
     encoder_cfgs = dict(
         learning_rate = lr,
