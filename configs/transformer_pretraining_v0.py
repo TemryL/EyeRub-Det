@@ -58,6 +58,6 @@ val_path = "data/automatic/set_2/all.csv"
 out_dir = "out/pretraining_v0/"
 
 # Compute related
-accelerator = "cpu"
-num_workers = 8
+accelerator = "gpu"
+num_workers = 20
 pin_memory = False
