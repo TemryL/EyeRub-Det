@@ -34,4 +34,4 @@ out_dir = "out/CNN/"
 # Compute related
 accelerator = "gpu"
 num_workers = 20
-pin_memory = False
+pin_memory = True

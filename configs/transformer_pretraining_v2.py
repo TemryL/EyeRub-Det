@@ -60,4 +60,4 @@ out_dir = "out/pretraining_v2/"
 # Compute related
 accelerator = "gpu"
 num_workers = 20
-pin_memory = False
+pin_memory = True

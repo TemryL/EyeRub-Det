@@ -56,4 +56,4 @@ out_dir = "out/v0_pretrained/"
 # Compute related
 accelerator = "gpu"
 num_workers = 20
-pin_memory = False
+pin_memory = True
