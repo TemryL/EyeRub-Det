@@ -99,11 +99,11 @@ def train_supervised(config, num_epochs=1):
                     datamodule=data_module)
 
     # Set callbacks + logger + trainer
-    f1_ckpt_callback = ModelCheckpoint(
+    val_f1_ckpt_callback = ModelCheckpoint(
         dirpath = f'{config.out_dir}', 
-        filename = "best_f1",
+        filename = "best_val_f1",
         save_top_k = 1, verbose=True, 
-        monitor = "f1", mode="max"
+        monitor = "val_f1", mode="max"
     )
     val_loss_ckpt_callback = ModelCheckpoint(
         dirpath = f'{config.out_dir}', 
@@ -118,7 +118,7 @@ def train_supervised(config, num_epochs=1):
         max_epochs=num_epochs, 
         devices=1,
         logger=logger, 
-        callbacks=[f1_ckpt_callback, val_loss_ckpt_callback],
+        callbacks=[val_f1_ckpt_callback, val_loss_ckpt_callback],
         accelerator=config.accelerator,
         enable_progress_bar=True
     )
