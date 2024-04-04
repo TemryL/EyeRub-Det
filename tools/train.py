@@ -49,18 +49,21 @@ def train_unsupervised(config, num_epochs=1):
 
 def train_supervised(config, num_epochs=1):
     # Load data
-    train_path = config.train_path
-    val_path = config.val_path
+    train_users = config.train_users
+    val_users = config.val_users
+    test_users = config.test_users
     
     label_encoder = LabelEncoder()
-    data_module = SupervisedDataModule(train_path, 
-                                    val_path, 
-                                    config.features, 
-                                    label_encoder, 
+    data_module = SupervisedDataModule(config.data_dir,
+                                    train_users,
+                                    val_users,
+                                    test_users,
+                                    config.features,
+                                    label_encoder,
                                     config.batch_size,
-                                    normalize=config.normalize, 
-                                    num_workers=config.num_workers, 
-                                    pin_memory=config.pin_memory)
+                                    config.normalize,
+                                    config.num_workers,
+                                    config.pin_memory)
     
     # Initialize model
     if config.model_name == 'Transformer':

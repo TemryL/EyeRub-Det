@@ -49,10 +49,14 @@ STDS = [0.5518096884567281,
 
 
 class SupervisedDataset(Dataset):
-    def __init__(self, path, features, label_encoder, normalize=False):
+    def __init__(self, data_dir, users, features, label_encoder, normalize=False):
         sequences = []
         labels = []
-        for subpath, subdir, files in os.walk(path):
+        for subpath, subdir, files in os.walk(data_dir):
+            user = subpath.split("/")[-1]
+            if user not in users:
+                continue
+            
             for file in glob(os.path.join(subpath, "*.csv")):
                 df = pd.read_csv(file)
                 # Normalize data:
@@ -78,10 +82,12 @@ class SupervisedDataset(Dataset):
 
 
 class SupervisedDataModule(pl.LightningDataModule):
-    def __init__(self, train_path, test_path, features, label_encoder, batch_size, normalize, num_workers, pin_memory):
+    def __init__(self, data_dir, train_users, val_users, test_users, features, label_encoder, batch_size, normalize, num_workers, pin_memory):
         super().__init__()
-        self.train_path = train_path
-        self.test_path = test_path
+        self.data_dir = data_dir
+        self.train_users = train_users
+        self.val_users = val_users
+        self.test_users = test_users
         self.features = features
         self.label_encoder = label_encoder
         self.batch_size = batch_size
@@ -90,8 +96,9 @@ class SupervisedDataModule(pl.LightningDataModule):
         self.pin_memory = pin_memory
 
     def setup(self, stage=None):
-        self.train_dataset = SupervisedDataset(self.train_path, self.features, self.label_encoder, self.normalize)
-        self.test_dataset = SupervisedDataset(self.test_path, self.features, self.label_encoder, self.normalize)
+        self.train_dataset = SupervisedDataset(self.data_dir, self.train_users, self.features, self.label_encoder, self.normalize)
+        self.val_dataset = SupervisedDataset(self.data_dir, self.val_users, self.features, self.label_encoder, self.normalize)
+        self.test_dataset = SupervisedDataset(self.data_dir, self.test_users, self.features, self.label_encoder, self.normalize)
 
     def train_dataloader(self):
         return DataLoader(
@@ -104,7 +111,7 @@ class SupervisedDataModule(pl.LightningDataModule):
     
     def val_dataloader(self):
         return DataLoader(
-            self.test_dataset,
+            self.val_dataset,
             batch_size = self.batch_size,
             shuffle = False,
             num_workers = self.num_workers,
