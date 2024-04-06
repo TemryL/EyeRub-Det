@@ -52,7 +52,6 @@ data_dir = "data/manual/"
 train_users = ["user50", "user51", "user53", "user55", "user56", "user59", "user60"]
 val_users = ["user52", "user54", "user57", "user58"]
 test_users = ["user52", "user54", "user57", "user58"]
-out_dir = "out/v3_pretrained/"
 
 # Compute related
 accelerator = "gpu"

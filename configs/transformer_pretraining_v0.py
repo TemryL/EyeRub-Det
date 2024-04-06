@@ -55,9 +55,8 @@ encoder_cfgs = dict(
 data_dir = "data/"
 train_path = "data/automatic/set_1/all.csv"
 val_path = "data/automatic/set_2/all.csv"
-out_dir = "out/pretraining_v0/"
 
 # Compute related
 accelerator = "gpu"
 num_workers = 20
-pin_memory = True
+pin_memory = False

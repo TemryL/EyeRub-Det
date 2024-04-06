@@ -11,7 +11,7 @@ from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.loggers import TensorBoardLogger
 
 
-def train_unsupervised(config, num_epochs=1):
+def train_unsupervised(config, num_epochs=1, out_dir='out/'):
     # Load data
     train_path = config.train_path
     val_path = config.val_path
@@ -26,13 +26,13 @@ def train_unsupervised(config, num_epochs=1):
     
     # Set callbacks + logger + trainer
     val_loss_ckpt_callback = ModelCheckpoint(
-        dirpath = f'{config.out_dir}', 
+        dirpath = f'{out_dir}', 
         filename = "best_val_loss",
         save_top_k = 1, verbose=True, 
         monitor = "val_loss", mode="min"
     )
 
-    logger = TensorBoardLogger(save_dir=config.out_dir, name='', version='logs')
+    logger = TensorBoardLogger(save_dir=out_dir, name='', version='logs')
     
     trainer = pl.Trainer(
         max_epochs=num_epochs, 
@@ -47,7 +47,7 @@ def train_unsupervised(config, num_epochs=1):
     trainer.fit(model, datamodule=data_module)
 
 
-def train_supervised(config, num_epochs=1):
+def train_supervised(config, num_epochs=1, out_dir='out/'):
     # Load data
     train_users = config.train_users
     val_users = config.val_users
@@ -100,19 +100,19 @@ def train_supervised(config, num_epochs=1):
 
     # Set callbacks + logger + trainer
     val_f1_ckpt_callback = ModelCheckpoint(
-        dirpath = f'{config.out_dir}', 
+        dirpath = f'{out_dir}', 
         filename = "best_val_f1",
         save_top_k = 1, verbose=True, 
         monitor = "val_f1", mode="max"
     )
     val_loss_ckpt_callback = ModelCheckpoint(
-        dirpath = f'{config.out_dir}', 
+        dirpath = f'{out_dir}', 
         filename = "best_val_loss",
         save_top_k = 1, verbose=True, 
         monitor = "val_loss", mode="min"
     )
 
-    logger = TensorBoardLogger(save_dir=config.out_dir, name='', version='logs')
+    logger = TensorBoardLogger(save_dir=out_dir, name='', version='logs')
     
     trainer = pl.Trainer(
         max_epochs=num_epochs, 
