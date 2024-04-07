@@ -47,11 +47,11 @@ def train_unsupervised(config, num_epochs=1, out_dir='out/'):
     trainer.fit(model, datamodule=data_module)
 
 
-def train_supervised(config, num_epochs=1, out_dir='out/'):
+def train_supervised(config, train_users, val_users, num_epochs=1, out_dir='out/'):
     # Load data
-    train_users = config.train_users
-    val_users = config.val_users
-    test_users = config.test_users
+    train_users = train_users
+    val_users = val_users
+    test_users = []
     
     label_encoder = LabelEncoder()
     data_module = SupervisedDataModule(config.data_dir,

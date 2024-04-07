@@ -24,7 +24,7 @@ lr = 5e-4
 batch_size = 16
 
 model_name = 'Transformer'
-pretrained_model = 'out/pretraining_v2/best_val_loss.ckpt'
+pretrained_model = 'out/pretraining/v2/best_val_loss.ckpt'
 model_cfgs = dict(
     encoder_cfgs = dict(
         learning_rate = lr,
@@ -49,9 +49,6 @@ model_cfgs = dict(
 
 # Directories
 data_dir = "data/manual/"
-train_users = ["user50", "user51", "user53", "user55", "user56", "user59", "user60"]
-val_users = ["user52", "user54", "user57", "user58"]
-test_users = ["user52", "user54", "user57", "user58"]
 
 # Compute related
 accelerator = "gpu"
