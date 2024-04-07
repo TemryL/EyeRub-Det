@@ -30,14 +30,14 @@ if __name__ == '__main__':
     
     with open(args.train_users, 'r') as f:
         train_users = f.read().splitlines()
-    
+        
     with open(args.val_users, 'r') as f:
         val_users = f.read().splitlines()
     
     train_supervised(
         config, 
-        train_users=args.train_users,
-        val_users=args.val_users,
+        train_users=train_users,
+        val_users=val_users,
         num_epochs=args.num_epochs,  
         out_dir=args.out_dir
     )
