@@ -63,4 +63,4 @@ def test(config, ckpt_path, test_users):
     ax.set_xticklabels(label_encoder.decode_map.values())
     ax.set_yticklabels(label_encoder.decode_map.values())
     
-    return model.acc_test, model.f1_test, model.cm_test, model.roc_auc_ovr_test, model.roc_auc_ovo
+    return model.acc_test, model.f1_test, model.cm_test, model.roc_auc_ovr_test, model.roc_auc_ovo, model.roc_auc

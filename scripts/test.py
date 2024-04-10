@@ -32,8 +32,8 @@ if __name__ == '__main__':
     with open(args.test_users, 'r') as f:
         test_users = f.read().splitlines()
     
-    acc_test, f1_test, cm_test, roc_auc_ovr, roc_auc_ovo = test(config, ckpt_path=args.ckpt_path, test_users=test_users)
-    results = {'f1': f1_test, 'auc_ovr': roc_auc_ovr, 'auc_ovo': roc_auc_ovo}
+    acc_test, f1_test, cm_test, roc_auc_ovr, roc_auc_ovo, roc_auc = test(config, ckpt_path=args.ckpt_path, test_users=test_users)
+    results = {'f1': f1_test, 'auc_ovr': roc_auc_ovr, 'auc_ovo': roc_auc_ovo, 'auc': roc_auc}
     
     # Ensure the output directory exists
     os.makedirs(args.out_dir, exist_ok=True)

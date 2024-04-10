@@ -5,7 +5,8 @@ import pytorch_lightning as pl
 import matplotlib.pyplot as plt
 import torch.nn.functional as F
 from torchmetrics.classification import Accuracy, F1Score, ConfusionMatrix
-from sklearn.metrics import roc_auc_score
+from sklearn.preprocessing import label_binarize
+from sklearn.metrics import roc_auc_score, roc_curve, auc
 
 
 class SupervisedModel(pl.LightningModule):
@@ -98,11 +99,18 @@ class SupervisedModel(pl.LightningModule):
         fig_ = self._plot_cm(y_pred, y_true)
         roc_auc_ovr = roc_auc_score(y_true, probs, multi_class='ovr')
         roc_auc_ovo = roc_auc_score(y_true, probs, multi_class='ovo')
+        fpr = dict()
+        tpr = dict()
+        roc_auc = dict()
+        for i in range(probs.shape[1]):
+            fpr[i], tpr[i], _ = roc_curve(label_binarize(y_true, classes=[0, 1, 2, 3, 4])[:, i], probs[:, i])
+            roc_auc[i] = auc(fpr[i], tpr[i])
         self.acc_test = acc.item()
         self.f1_test = f1.item()
         self.cm_test = fig_
         self.roc_auc_ovr_test = roc_auc_ovr
         self.roc_auc_ovo = roc_auc_ovo
+        self.roc_auc = roc_auc
     
     def _plot_cm(self, y_pred, y_true):
         cm = self.confmat(y_pred, y_true)
