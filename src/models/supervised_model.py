@@ -98,8 +98,11 @@ class SupervisedModel(pl.LightningModule):
         fig_ = self._plot_cm(y_pred, y_true)
         roc_auc_ovr = roc_auc_score(y_true, probs, multi_class='ovr')
         roc_auc_ovo = roc_auc_score(y_true, probs, multi_class='ovo')
-        print(roc_auc_ovr, roc_auc_ovo)
-        return acc, f1, fig_, roc_auc_ovr, roc_auc_ovo
+        self.acc_test = acc.item()
+        self.f1_test = f1.item()
+        self.cm_test = fig_
+        self.roc_auc_ovr_test = roc_auc_ovr
+        self.roc_auc_ovo = roc_auc_ovo
     
     def _plot_cm(self, y_pred, y_true):
         cm = self.confmat(y_pred, y_true)
