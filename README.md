@@ -110,7 +110,7 @@ Replace `<model_directory>` with the appropriate output directory (e.g., CNN, De
 
 ## Additional Information
 
-For more details about the dataset and the research behind this project, please refer to the paper linked above and the dataset description on Hugging Face.
+For more details about the dataset and the research behind this project, please refer to the paper linked above and the dataset description on [Hugging Face](https://huggingface.co/datasets/TemryL/hand-face-interactions).
 
 ## Citation
 
