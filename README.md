@@ -6,6 +6,8 @@ This repository contains the code for the paper:
 >
 > - [Link to the paper: TO BE ADDED](), DATE TO BE ADDED
 
+Published in [Translational Vision Science & Technology](https://tvst.arvojournals.org/) (TVST)
+
 This project implements various machine learning models for detecting eye-rubbing and other hand-face interactions using smartwatch sensor data.
 
 ## Setup Instructions
