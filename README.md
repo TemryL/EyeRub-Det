@@ -3,7 +3,7 @@
 This repository contains the code for the paper:
 
 > **Eye-Rubbing Detection Using a Smartwatch: A feasibility study demonstrated high accuracy with machine learning methods based on Transformer**, TVST 2024
-> - [Link to the paper]([Link to the paper](https://tvst.arvojournals.org/article.aspx?articleid=2800751)), September 2024
+> - [Link to the paper](https://tvst.arvojournals.org/article.aspx?articleid=2800751), September 2024
 
 Published in [Translational Vision Science & Technology](https://tvst.arvojournals.org/) (TVST)
 
