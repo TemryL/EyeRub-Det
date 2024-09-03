@@ -5,8 +5,6 @@ This repository contains the code for the paper:
 > **Eye-Rubbing Detection Using a Smartwatch: A feasibility study demonstrated high accuracy with machine learning methods based on Transformer**
 > - [Paper in TVST](https://tvst.arvojournals.org/article.aspx?articleid=2800751), Sep 2024
 
-Published in [Translational Vision Science & Technology](https://tvst.arvojournals.org/) (TVST)
-
 This project implements various machine learning models for detecting eye-rubbing and other hand-face interactions using smartwatch sensor data.
 
 ## Setup Instructions
