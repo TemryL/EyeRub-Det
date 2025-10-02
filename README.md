@@ -114,6 +114,18 @@ For more details about the dataset and the research behind this project, please 
 If you use this code or the associated dataset in your research, please cite our paper:
 
 ```bibtex
-@article{
+@article{elahi2024eyerubbing,
+  title   = {Eye-Rubbing Detection Using a Smartwatch: A Feasibility Study Demonstrated High Accuracy With Machine Learning},
+  author  = {Elahi, S. and Mery, T. and Panthier, C. and Saad, A. and Gatinel, D. and Alahi, A.},
+  journal = {Translational Vision Science & Technology},
+  year    = {2024},
+  volume  = {13},
+  number  = {9},
+  pages   = {1},
+  doi     = {10.1167/tvst.13.9.1},
+  pmid    = {39226066},
+  pmcid   = {PMC11373705}
 }
 ```
+[doi:10.1167/tvst.13.9.1](https://doi.org/10.1167/tvst.13.9.1) | [PubMed](https://pubmed.ncbi.nlm.nih.gov/39226066/)
+
